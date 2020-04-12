@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Payment Gateway</title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>		
+	<div class="pay-page-h1 mt-4 text-center">
+		<h1>Pay Securely with your Debit/Credit Card</h1>
+	</div>
+<select name="token_id">
+<option th:each="i:${cardPayment.cardNumber}" th:value="${i}" th:text="${i}">th:text="${i}"</option>
+</select>	
+</body>
+</html>

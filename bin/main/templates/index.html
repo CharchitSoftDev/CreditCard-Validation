@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Payment Gateway</title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="pay-page-h1 mt-4 text-center">
+		<h1>Pay Securely with your Debit/Credit Card</h1>
+	</div>
+	<div class="payment-form-div shadow-lg p-3 mb-5 bg-white rounded">
+		<form th:action="@{/paymentRequest/payNow}" th:object="${payment}"
+			method="post" class="payment-form p-4">
+			<div class="error-container alert alert-danger" role="alert"
+				th:if="${#fields.hasErrors('${payment.*}')}"
+				th:errors="${payment.*}"></div>
+			<div class="form-group">
+				<div class="payment-field">
+					<label class="form-lbl">Card Number</label><input type="text"
+						th:field="*{cardNumber}" class="form-control col-6" maxlenght="16" /><img
+						alt="card" class="img-responsive payment-card-img"
+						th:src="@{/images/cardvisa.jpg}">
+				</div>
+				<div class="payment-field">
+					<label class="form-lbl">CVV</label><input type="password"
+						th:field="*{CVV}" class="form-control col-6" />
+				</div>
+				<div class="payment-field">
+					<label>Expiry Month</label><input type="text"
+						th:field="*{expMonth}" class="form-control col-6" maxlength="2"
+						placeholder="MM" />
+				</div>
+				<div class="payment-field">
+					<label class="form-lbl">Expiry Year</label><input name="expYear"
+						type="text" th:field="*{expYear}" class="form-control col-6"
+						maxlength="4" placeholder="YYYY" /><form:input path="expYear"/>
+				</div>
+				<div class="payment-field">
+					<label class="form-lbl">Amount</label><input type="number"
+						th:field="*{amount}" class="form-control col-6" />
+				</div>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend mt-3">
+						<div class="input-group-text">
+							<input type="checkbox" th:field="*{saveCard}"
+								aria-label="Checkbox for following text input"> SAVE
+							CARD
+						</div>
+					</div>
+				</div>
+				<div class="payment-btn mx-auto">
+					<button type="submit" class="btn btn-outline-success btn-lg">submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
